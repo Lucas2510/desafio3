@@ -3,13 +3,15 @@ package desafio.devoptopus.desafio3.document;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "product")
-public class Product {
+import java.io.Serializable;
+
+@Document(collection = "products")
+public class Product implements Serializable {
 
     @Id
     private String _id;
 
-    private int id;
+    private String id;
 
     private String brand;
 
@@ -22,7 +24,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String _id,int id, String brand, String description, String image, int price) {
+    public Product(String _id, String id, String brand, String description, String image, int price) {
         this._id = _id;
         this.id = id;
         this.brand = brand;
@@ -39,11 +41,11 @@ public class Product {
         this._id = _id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
