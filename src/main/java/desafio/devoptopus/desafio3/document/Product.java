@@ -11,7 +11,7 @@ public class Product implements Serializable {
     @Id
     private String _id;
 
-    private String id;
+    private long id;
 
     private String brand;
 
@@ -24,7 +24,7 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(String _id, String id, String brand, String description, String image, int price) {
+    public Product(String _id, long id, String brand, String description, String image, int price) {
         this._id = _id;
         this.id = id;
         this.brand = brand;
@@ -41,11 +41,11 @@ public class Product implements Serializable {
         this._id = _id;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
