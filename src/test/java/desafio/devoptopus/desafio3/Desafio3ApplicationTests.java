@@ -12,27 +12,27 @@ import java.util.List;
 @SpringBootTest
 class Desafio3ApplicationTests {
 
-	@Autowired
-	ProductRepository productRepository;
+    @Autowired
+    ProductRepository productRepository;
 
-	@Test
-	void shouldFindById() {
+    @Test
+    void shouldFindById() {
 
-		Long id = 5L;
-		Product product = productRepository.findById(id);
-		Assertions.assertEquals(5, product.getId());
+        Long id = 5L;
+        Product product = productRepository.findById(id);
+        Assertions.assertEquals(5, product.getId());
 
-	}
+    }
 
-	@Test
-	void shouldFindAllProducts(){
+    @Test
+    void shouldFindAllProducts() {
 
-		List<Product> products =  productRepository.findAll();
-		Assertions.assertNotNull(products);
-		Assertions.assertNotEquals(0, products.size());
-		Assertions.assertEquals(3000, products.size());
+        List<Product> products = productRepository.findAll();
+        Assertions.assertNotNull(products);
+        Assertions.assertNotEquals(0, products.size());
+        Assertions.assertEquals(3000, products.size());
 
 
-	}
+    }
 
 }
