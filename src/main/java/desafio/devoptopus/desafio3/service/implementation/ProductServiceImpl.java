@@ -1,28 +1,35 @@
 package desafio.devoptopus.desafio3.service.implementation;
 
+import desafio.devoptopus.desafio3.document.Product;
 import desafio.devoptopus.desafio3.repository.ProductRepository;
 import desafio.devoptopus.desafio3.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
-    public ResponseEntity<Object> findProducts(String search) {
+    public List<Product> findProducts(String search) {
         try {
             Long id = Long.parseLong(search);
-            return new ResponseEntity<>(productRepository.findById(id), HttpStatus.OK);
+            List<Product> listProduct = new ArrayList<>();
+            Product product = productRepository.findById(id);
+            listProduct.add(product);
+            return listProduct;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        if (search.length() < 3) {
-            return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+        if (search.length() >= 3) {
+            return productRepository.findByRegex(search);
         }
-        return new ResponseEntity<>(productRepository.findByRegex(search), HttpStatus.OK);
+        List<Product> listProduct = new ArrayList<>();
+        return listProduct;
+
     }
 }
