@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     public List<Product> findProducts(String search) {
         try {
@@ -21,8 +21,6 @@ public class ProductServiceImpl implements ProductService {
             List<Product> listProduct = new ArrayList<>();
             Product product = productRepository.findById(id);
             listProduct.add(product);
-
-
             return listProduct;
         } catch (Exception e) {
             System.out.println(e.getMessage());
