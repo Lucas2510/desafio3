@@ -1,12 +1,15 @@
 package desafio.devoptopus.desafio3.controller;
 
 import desafio.devoptopus.desafio3.document.Product;
+import desafio.devoptopus.desafio3.exception.ApiError;
 import desafio.devoptopus.desafio3.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -21,5 +24,13 @@ public class ProductController {
     public ResponseEntity<List<Product>> findProducts(@RequestParam("search") String search) {
         return new ResponseEntity<>( productService.findProducts(search), HttpStatus.OK);
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApiError defaultHandleException(HttpServletRequest request) {
+        ApiError error = new ApiError(500,"Error",request.getServletPath());
+        return error;
+    }
+
 
 }
