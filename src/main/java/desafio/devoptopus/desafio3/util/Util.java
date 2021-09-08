@@ -17,4 +17,7 @@ public class Util {
 
     }
 
+    public static double calDiscount(double price){
+        return price * 0.5;
+    }
 }
