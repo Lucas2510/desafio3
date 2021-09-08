@@ -23,13 +23,13 @@ public class ProductServiceImpl implements ProductService {
             Product product = productRepository.findById(id);
             if (search.length() == 1) {
                 if (Util.isPalindrome(0 + search)) {
-                    product.setDiscount(product.getPrice()*0.5);
+                    product.setDiscount(product.getPrice() * 0.5);
                     listProduct.add(product);
                     return listProduct;
                 }
             } else if (search.length() > 1) {
                 if (Util.isPalindrome(search)) {
-                    product.setDiscount(product.getPrice()*0.5);
+                    product.setDiscount(product.getPrice() * 0.5);
                     listProduct.add(product);
                     return listProduct;
                 }
@@ -42,17 +42,16 @@ public class ProductServiceImpl implements ProductService {
         try {
             List<Product> product = productRepository.findByRegex(search);
             if (search.length() < 3) {
-                listProduct.addAll(product);
                 return listProduct;
             }
             if (Util.isPalindrome(search)) {
-                product.stream().forEach(p -> p.setDiscount(p.getPrice()*0.5));
+                product.stream().forEach(p -> p.setDiscount(p.getPrice() * 0.5));
                 listProduct.addAll(product);
                 return product;
             }
             listProduct.addAll(product);
             return listProduct;
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return listProduct;

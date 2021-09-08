@@ -1,54 +1,41 @@
 package desafio.devoptopus.desafio3.exception;
 
-import java.util.Date;
+import org.springframework.http.HttpStatus;
+
+import java.util.Collections;
+import java.util.List;
 
 public class ApiError {
 
-    int status;
+    private HttpStatus status;
 
-    String message;
+    private List<String> errors;
 
-    long timestamp;
-
-    String path;
-
-    public ApiError(int status, String message, String path) {
+    public ApiError(final HttpStatus status, final List<String> errors) {
         super();
         this.status = status;
-        this.message = message;
-        this.timestamp = new Date().getTime();
-        this.path = path;
+        this.errors = errors;
     }
 
-    public int getStatus() {
+    public ApiError(final HttpStatus status, final String error) {
+        super();
+        this.status = status;
+        errors = Collections.singletonList(error);
+    }
+
+    public HttpStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(HttpStatus status) {
         this.status = status;
     }
 
-    public String getMessage() {
-        return message;
+    public List<String> getErrors() {
+        return errors;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
+    public void setErrors(List<String> errors) {
+        this.errors = errors;
     }
 }
