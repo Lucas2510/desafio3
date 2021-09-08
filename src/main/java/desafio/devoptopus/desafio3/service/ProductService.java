@@ -1,7 +1,11 @@
 package desafio.devoptopus.desafio3.service;
 
-import org.springframework.http.ResponseEntity;
+import desafio.devoptopus.desafio3.document.Product;
+
+import java.util.List;
 
 public interface ProductService {
-    ResponseEntity<Object> findProducts(String search);
+
+    List<Product> findProducts(String search);
+
 }

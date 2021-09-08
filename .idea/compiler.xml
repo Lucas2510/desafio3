@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="desafio3" />
+        <module name="desafio3_" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="desafio3" options="-parameters" />
+      <module name="desafio3_" options="-parameters" />
     </option>
   </component>
 </project>

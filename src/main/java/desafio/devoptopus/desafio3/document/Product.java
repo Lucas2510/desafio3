@@ -11,7 +11,7 @@ public class Product implements Serializable {
     @Id
     private String _id;
 
-    private Long id;
+    private long id;
 
     private String brand;
 
@@ -19,18 +19,22 @@ public class Product implements Serializable {
 
     private String image;
 
-    private int price;
+    private double price;
+
+    private double discount;
 
     public Product() {
     }
 
-    public Product(String _id,Long id, String brand, String description, String image, int price) {
+
+    public Product(String _id, long id, String brand, String description, String image, double price, double discount) {
         this._id = _id;
         this.id = id;
         this.brand = brand;
         this.description = description;
         this.image = image;
         this.price = price;
+        this.discount = discount;
     }
 
     public String get_id() {
@@ -41,11 +45,11 @@ public class Product implements Serializable {
         this._id = _id;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -73,11 +77,20 @@ public class Product implements Serializable {
         this.image = image;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
 }
