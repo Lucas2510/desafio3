@@ -22,6 +22,7 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
     @ApiOperation(value = "Products", notes="This endpoint receives a parameter to search the database for " +
             "products that match the entered data, to return a list of products",nickname = "products")
     @GetMapping("/products")

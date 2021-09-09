@@ -9,18 +9,12 @@ public class ApiError {
 
     private HttpStatus status;
 
-    private List<String> errors;
+    private String message;
 
-    public ApiError(final HttpStatus status, final List<String> errors) {
+    public ApiError(final HttpStatus status, String message) {
         super();
         this.status = status;
-        this.errors = errors;
-    }
-
-    public ApiError(final HttpStatus status, final String error) {
-        super();
-        this.status = status;
-        errors = Collections.singletonList(error);
+        this.message = message;
     }
 
     public HttpStatus getStatus() {
@@ -31,11 +25,11 @@ public class ApiError {
         this.status = status;
     }
 
-    public List<String> getErrors() {
-        return errors;
+    public String getMessage() {
+        return message;
     }
 
-    public void setErrors(List<String> errors) {
-        this.errors = errors;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

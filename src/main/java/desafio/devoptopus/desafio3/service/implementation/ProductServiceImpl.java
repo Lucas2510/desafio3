@@ -1,6 +1,7 @@
 package desafio.devoptopus.desafio3.service.implementation;
 
 import desafio.devoptopus.desafio3.document.Product;
+import desafio.devoptopus.desafio3.exception.NotFoundException;
 import desafio.devoptopus.desafio3.repository.ProductRepository;
 import desafio.devoptopus.desafio3.service.ProductService;
 import desafio.devoptopus.desafio3.util.Util;
@@ -23,47 +24,40 @@ public class ProductServiceImpl implements ProductService {
         Pattern pat = Pattern.compile("^[a-zA-Z0-9]+$");
         Matcher mat = pat.matcher(search);
         boolean result = mat.matches();
+        Long id = tryParseLong(search);
+        boolean isPalindrome = Util.isPalindrome(search);
         if (result = true) {
-            try {
-                Long id = Long.parseLong(search);
+            if (id != null) {
                 Product product = productRepository.findById(id);
-                if (search.length() == 1) {
-                    if (Util.isPalindrome(0 + search)) {
-                        product.setDiscount(Util.calDiscount(product.getPrice()));
-                        listProduct.add(product);
-                        return listProduct;
-                    }
-                } else if (search.length() > 1) {
-                    if (Util.isPalindrome(search)) {
-                        product.setDiscount(Util.calDiscount(product.getPrice()));
-                        listProduct.add(product);
-                        return listProduct;
-                    }
+
+                if (isPalindrome) {
+                    product.setDiscount(Util.calDiscount(product.getPrice()));
                 }
-                listProduct.add(product);
-                return listProduct;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-            try {
+                if (product != null) {
+                    listProduct.add(product);
+                }
+
+            } else {
                 List<Product> product = productRepository.findByRegex(search);
-                if (search.length() < 3) {
-                    listProduct.addAll(product);
-                    return listProduct;
-                }
-                if (Util.isPalindrome(search)) {
+                if (isPalindrome) {
                     product.stream().forEach(p -> p.setDiscount(Util.calDiscount(p.getPrice())));
-                    listProduct.addAll(product);
-                    return product;
                 }
                 listProduct.addAll(product);
-                return listProduct;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
             }
-            return listProduct;
+        }
+        if (listProduct.size() == 0) {
+            throw new NotFoundException("not found products");
         }
         return listProduct;
+    }
 
+    private Long tryParseLong(String str) {
+        Long longValue = null;
+        try {
+            longValue = Long.parseLong(str);
+        } catch (Exception e) {
+
+        }
+        return longValue;
     }
 }

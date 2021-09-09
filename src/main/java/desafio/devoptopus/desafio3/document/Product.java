@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
+
 @Document(collection = "products")
 public class Product implements Serializable {
 
@@ -25,6 +26,7 @@ public class Product implements Serializable {
 
     public Product() {
     }
+
 
     public Product(String _id, long id, String brand, String description, String image, double price, double discount) {
         this._id = _id;
