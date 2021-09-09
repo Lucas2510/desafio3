@@ -7,6 +7,9 @@ import java.util.stream.IntStream;
 @Component
 public class Util {
 
+    private Util(){
+
+    }
     public static boolean isPalindrome(String originalString) {
 
         String tempString = originalString.replaceAll("\\s+", "").toLowerCase();

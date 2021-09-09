@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
         boolean result = mat.matches();
         Long id = tryParseLong(search);
         boolean isPalindrome = Util.isPalindrome(search);
-        if (result = true) {
+        if (result) {
             if (id != null) {
                 Product product = productRepository.findById(id);
 
@@ -40,12 +40,12 @@ public class ProductServiceImpl implements ProductService {
             } else {
                 List<Product> product = productRepository.findByRegex(search);
                 if (isPalindrome) {
-                    product.stream().forEach(p -> p.setDiscount(Util.calDiscount(p.getPrice())));
+                    product.forEach(p -> p.setDiscount(Util.calDiscount(p.getPrice())));
                 }
                 listProduct.addAll(product);
             }
         }
-        if (listProduct.size() == 0) {
+        if (listProduct.isEmpty()) {
             throw new NotFoundException("not found products");
         }
         return listProduct;
@@ -55,8 +55,9 @@ public class ProductServiceImpl implements ProductService {
         Long longValue = null;
         try {
             longValue = Long.parseLong(str);
+            System.out.println("busqueda por id, voy a evolucionar a un log");
         } catch (Exception e) {
-
+            System.out.println("busqueda por string, voy a evolucionar a un log");
         }
         return longValue;
     }

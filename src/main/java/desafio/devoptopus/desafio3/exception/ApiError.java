@@ -2,8 +2,6 @@ package desafio.devoptopus.desafio3.exception;
 
 import org.springframework.http.HttpStatus;
 
-import java.util.Collections;
-import java.util.List;
 
 public class ApiError {
 
