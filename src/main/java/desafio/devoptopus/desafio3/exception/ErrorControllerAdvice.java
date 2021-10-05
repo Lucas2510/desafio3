@@ -20,7 +20,14 @@ public class ErrorControllerAdvice {
     @ExceptionHandler(NotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(
             final Exception ex, final WebRequest request) {
-        final ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, "Product don't exist");
+        final ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, "Product don't exist.");
+        return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @ExceptionHandler(CharacterError.class)
+    protected ResponseEntity<Object> handlerCharacterError(
+            final Exception ex, final WebRequest request) {
+        final ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "No special character can be used.");
         return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 
